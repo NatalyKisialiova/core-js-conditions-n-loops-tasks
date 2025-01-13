@@ -62,8 +62,14 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -311,6 +317,14 @@ function getSpiralMatrix(/* size */) {
  *  ]                 ]
  */
 function rotateMatrix(/* matrix */) {
+  // const newMatrix = [];
+  // for (let i = 0; i < matrix[0].length; i += 1) {
+  //   newMatrix[i] = [];
+  //   for (let j = 0; j < matrix.length; i += 1) {
+  //     newMatrix[i][j] = matrix[j][i];
+  //   }
+  // }
+  // return newMatrix;
   throw new Error('Not implemented');
 }
 
@@ -328,8 +342,20 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const newArray = arr;
+  if (newArray.length === 0) return [];
+
+  for (let i = 1; i < newArray.length; i += 1) {
+    const key = newArray[i];
+    let j = i - 1;
+    while (j >= 0 && newArray[j] > key) {
+      newArray[j + 1] = newArray[j];
+      j -= 1;
+    }
+    newArray[j + 1] = key;
+  }
+  return newArray;
 }
 
 /**
